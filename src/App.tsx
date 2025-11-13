@@ -35,13 +35,14 @@
 // export default App
 import reactLogo from "./assets/react.svg";
 import "./App.css";
+import type { JSX } from "react";
 
 function App(): JSX.Element {
   return (
     <div className="App">
       <header className="App-header">
         <img src={reactLogo} className="logo react" alt="React logo" />
-        <h1>Hello from Amplify</h1>
+        <h1>Hello from Amplify Updated ALL </h1>
       </header>
     </div>
   );
