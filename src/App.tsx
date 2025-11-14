@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './App.css'; // Assuming you have some basic styling
+import { useState } from "react";
+import "./App.css";
 
 interface Note {
   id: string;
@@ -8,27 +8,29 @@ interface Note {
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);
-  const [newNoteContent, setNewNoteContent] = useState('');
+  const [newNoteContent, setNewNoteContent] = useState("");
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
-  const [editedNoteContent, setEditedNoteContent] = useState('');
+  const [editedNoteContent, setEditedNoteContent] = useState("");
 
   const handleAddNote = () => {
-    if (newNoteContent.trim() === '') return;
+    if (newNoteContent.trim() === "") return;
+
     const newNote: Note = {
-      id: Date.now().toString(), // Simple unique ID
+      id: Date.now().toString(),
       content: newNoteContent,
     };
+
     setNotes([...notes, newNote]);
-    setNewNoteContent('');
+    setNewNoteContent("");
   };
 
   const handleDeleteNote = (id: string) => {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
-  const handleEditNote = (id: string, currentContent: string) => {
+  const handleEditNote = (id: string, content: string) => {
     setEditingNoteId(id);
-    setEditedNoteContent(currentContent);
+    setEditedNoteContent(content);
   };
 
   const handleSaveEdit = (id: string) => {
@@ -37,8 +39,9 @@ function App() {
         note.id === id ? { ...note, content: editedNoteContent } : note
       )
     );
+
     setEditingNoteId(null);
-    setEditedNoteContent('');
+    setEditedNoteContent("");
   };
 
   return (
@@ -70,8 +73,12 @@ function App() {
             ) : (
               <>
                 <span>{note.content}</span>
-                <button onClick={() => handleEditNote(note.id, note.content)}>Edit</button>
-                <button onClick={() => handleDeleteNote(note.id)}>Delete</button>
+                <button onClick={() => handleEditNote(note.id, note.content)}>
+                  Edit
+                </button>
+                <button onClick={() => handleDeleteNote(note.id)}>
+                  Delete
+                </button>
               </>
             )}
           </div>
