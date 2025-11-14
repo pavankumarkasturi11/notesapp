@@ -1,33 +1,207 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.87);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+/* ----------------------------------------------------
+   GLOBAL RESET & BASE STYLES
+---------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  min-height: 100vh;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  padding: 30px 15px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
 }
 
-.card {
-  padding: 2em;
+/* Root container */
+#root {
+  width: 100%;
+  max-width: 900px;
 }
 
-.read-the-docs {
-  color: #888;
+/* ----------------------------------------------------
+   MAIN APP WRAPPER (Glassmorphism Card)
+---------------------------------------------------- */
+.App {
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.55);
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.6s ease-in-out;
+  text-align: center;
 }
 
-.box:nth-child(3n + 1) {
-  grid-column: 1;
+/* Title */
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  color: #0d47a1;
+  letter-spacing: -0.5px;
+  font-weight: 700;
 }
 
-.box:nth-child(3n + 2) {
-  grid-column: 2;
+/* ----------------------------------------------------
+   ADD NOTE SECTION
+---------------------------------------------------- */
+.add-note-section {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 28px;
 }
 
-.box:nth-child(3n + 3) {
-  grid-column: 3;
+.add-note-section input {
+  padding: 12px 14px;
+  width: 60%;
+  border: 1px solid #90caf9;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 16px;
+  transition: 0.25s;
+}
+
+.add-note-section input:focus {
+  border-color: #1565c0;
+  box-shadow: 0 0 8px rgba(21, 101, 192, 0.3);
+}
+
+/* Button Primary */
+.add-note-section button {
+  padding: 12px 20px;
+  font-size: 15px;
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  color: white;
+  border-radius: 10px;
+  transition: 0.25s;
+  font-weight: 600;
+}
+
+.add-note-section button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* ----------------------------------------------------
+   NOTES LIST
+---------------------------------------------------- */
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+/* Single Note Card */
+.note-item {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.75);
+  padding: 18px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.25s;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.note-item:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Note Content */
+.note-item span {
+  font-size: 1.1rem;
+  text-align: left;
+}
+
+/* Edit Mode Input */
+.note-item input {
+  padding: 10px 12px;
+  flex: 1;
+  margin-right: 10px;
+  border-radius: 10px;
+  border: 1px solid #64b5f6;
+  font-size: 16px;
+}
+
+/* ----------------------------------------------------
+   BUTTONS INSIDE NOTE CARD
+---------------------------------------------------- */
+.note-item button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+/* Edit Button */
+.note-item button:nth-child(2) {
+  background: #ff9800;
+}
+
+.note-item button:nth-child(2):hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+/* Delete Button */
+.note-item button:nth-child(3) {
+  background: #e53935;
+}
+
+.note-item button:nth-child(3):hover {
+  background: #c62828;
+  transform: scale(1.05);
+}
+
+/* Save Button */
+.note-item button.save {
+  background: #43a047;
+}
+
+.note-item button.save:hover {
+  background: #2e7d32;
+}
+
+/* ----------------------------------------------------
+   ANIMATIONS
+---------------------------------------------------- */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ----------------------------------------------------
+   RESPONSIVE
+---------------------------------------------------- */
+@media (max-width: 600px) {
+  .add-note-section {
+    flex-direction: column;
+  }
+
+  .add-note-section input {
+    width: 100%;
+  }
+
+  .note-item {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
 }
